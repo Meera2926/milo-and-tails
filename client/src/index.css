@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+
+  /* Keyboard focus stays visible everywhere */
+  :focus-visible {
+    outline: 2px solid #12836C;
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* --- Surfaces --- */
+  .card {
+    @apply bg-surface border border-line rounded-2xl shadow-card;
+  }
+  .card-pad {
+    @apply p-5 sm:p-6;
+  }
+
+  /* --- Buttons --- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold
+           transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap;
+  }
+  .btn-primary {
+    @apply btn bg-moss text-white hover:bg-moss-deep;
+  }
+  .btn-secondary {
+    @apply btn bg-moss-soft text-pine hover:bg-[#CFE7DF];
+  }
+  .btn-outline {
+    @apply btn border border-line bg-surface text-ink hover:bg-canvas;
+  }
+  .btn-danger {
+    @apply btn bg-coral text-white hover:bg-[#BE374F];
+  }
+  .btn-ghost {
+    @apply btn text-muted hover:text-ink hover:bg-canvas;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-[13px];
+  }
+
+  /* --- Forms --- */
+  .label {
+    @apply block text-[13px] font-semibold text-ink mb-1.5;
+  }
+  .hint {
+    @apply text-[12.5px] text-muted mt-1.5 leading-snug;
+  }
+  .input {
+    @apply w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-sm text-ink
+           placeholder:text-muted/70 focus:border-moss focus:outline-none focus:ring-2 focus:ring-moss/20;
+  }
+  .textarea {
+    @apply input min-h-[110px] resize-y;
+  }
+  .select {
+    @apply input appearance-none bg-[length:16px] bg-[right_0.9rem_center] bg-no-repeat pr-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235F6F69' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  }
+
+  /* --- Labels & chips --- */
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11.5px] font-semibold;
+  }
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.16em] text-muted;
+  }
+
+  /* --- Sidebar navigation --- */
+  .nav-link {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-[14px] font-medium text-muted
+           transition-colors hover:bg-canvas hover:text-ink;
+  }
+  .nav-link-active {
+    @apply bg-pine text-white hover:bg-pine hover:text-white;
+  }
+
+  /* --- Signature: the health passport booklet --- */
+  .passport {
+    @apply relative overflow-hidden rounded-2xl border border-pine/25 bg-[#FCFDFB] shadow-card;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(14,74,60,0.035) 0 1px, transparent 1px 13px),
+      repeating-linear-gradient(0deg, rgba(14,74,60,0.035) 0 1px, transparent 1px 13px);
+  }
+  .passport-strip {
+    @apply border-t border-dashed border-pine/30 bg-pine/[0.04] px-5 py-3 font-mono text-[11px]
+           uppercase leading-relaxed tracking-[0.12em] text-pine/75 break-all;
+  }
+}
+
+/* Recharts tooltip inherits the app's type */
+.recharts-default-tooltip {
+  border-radius: 12px !important;
+  border: 1px solid #DCE5DF !important;
+  box-shadow: 0 8px 24px -12px rgba(23,33,30,0.25) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 13px !important;
+}
